@@ -300,6 +300,12 @@
 		"activityBadgeBackground": "#0063a5",
 		"sideBarBackground": "#060621",
 		"titleBarActiveBackground": "#10192c",
-		"titleBarInactiveBackground": "#10192caa"
+		"titleBarInactiveBackground": "#10192caa",
+		"listFocusBackground": "#07365566",
+		"listActiveSelectionBackground": "#0E639C66",
+		"listFocusAndSelectionBackground": "#09477166",
+		"listInactiveSelectionBackground": "#3F3F4666",
+		"listHoverBackground": "#2A2D2E66",
+		"listDropBackground": "#383B3D66"
 	}
 }

@@ -128,13 +128,22 @@ export const highContrastOutline = registerColor('highContrastOutline', { light:
 /**
  * Widgets
  */
-export const inputBackground = registerColor('inputBackground', { dark: '#3C3C3C', light: Color.white, hc: Color.black }, nls.localize('inputBackground', 'Input field background'));
-export const inputForeground = registerColor('inputForeground', { dark: foreground, light: foreground, hc: foreground }, nls.localize('inputForeground', 'Input field foreground'));
-export const inputBorder = registerColor('inputBorder', { dark: null, light: null, hc: highContrastBorder }, nls.localize('inputBorder', 'Input field border'));
+export const inputBackground = registerColor('inputBackground', { dark: '#3C3C3C', light: Color.white, hc: Color.black }, nls.localize('inputBackground', "Input field background"));
+export const inputForeground = registerColor('inputForeground', { dark: foreground, light: foreground, hc: foreground }, nls.localize('inputForeground', "Input field foreground"));
+export const inputBorder = registerColor('inputBorder', { dark: null, light: null, hc: highContrastBorder }, nls.localize('inputBorder', "Input field border"));
 
-export const selectBackground = registerColor('selectBackground', { dark: '#3C3C3C', light: Color.white, hc: '#3C3C3C' }, nls.localize('selectBackground', 'Select field background'));
-export const selectForeground = registerColor('selectForeground', { dark: '#F0F0F0', light: null, hc: Color.white }, nls.localize('selectForeground', 'Select field foreground'));
-export const selectBorder = registerColor('selectBorder', { dark: selectBackground, light: '#CECECE', hc: selectBackground }, nls.localize('selectBorder', 'Select field border'));
+export const selectBackground = registerColor('selectBackground', { dark: '#3C3C3C', light: Color.white, hc: '#3C3C3C' }, nls.localize('selectBackground', "Select field background"));
+export const selectForeground = registerColor('selectForeground', { dark: '#F0F0F0', light: null, hc: Color.white }, nls.localize('selectForeground', "Select field foreground"));
+export const selectBorder = registerColor('selectBorder', { dark: selectBackground, light: '#CECECE', hc: selectBackground }, nls.localize('selectBorder', "Select field border"));
+
+export const listFocusBackground = registerColor('listFocusBackground', { dark: '#073655', light: '#DCEBFC', hc: null }, nls.localize('listFocusBackground', "List/Tree focus background when active"));
+export const listActiveSelectionBackground = registerColor('listActiveSelectionBackground', { dark: '#0E639C', light: '#4FA7FF', hc: null }, nls.localize('listActiveSelectionBackground', "List/Tree selection background when active"));
+export const listActiveSelectionForeground = registerColor('listActiveSelectionForeground', { dark: Color.white, light: Color.white, hc: null }, nls.localize('listActiveSelectionForeground', "List/Tree selection foreground when active"));
+export const listFocusAndSelectionBackground = registerColor('listFocusAndSelectionBackground', { dark: '#094771', light: '#3399FF', hc: null }, nls.localize('listFocusAndSelectionBackground', "List/Tree focus and selection background"));
+export const listFocusAndSelectionForeground = registerColor('listFocusAndSelectionForeground', { dark: Color.white, light: Color.white, hc: null }, nls.localize('listFocusAndSelectionForeground', "List/Tree focus and selection foreground"));
+export const listInactiveSelectionBackground = registerColor('listInactiveSelectionBackground', { dark: '#3F3F46', light: '#CCCEDB', hc: null }, nls.localize('listInactiveSelectionBackground', "List/Tree selection background when inactive"));
+export const listHoverBackground = registerColor('listHoverBackground', { dark: '#2A2D2E', light: '#F0F0F0', hc: null }, nls.localize('listHoverBackground', "List/Tree hover background"));
+export const listDropBackground = registerColor('listDropBackground', { dark: '#383B3D', light: '#DDECFF', hc: null }, nls.localize('listDropBackground', "List/Tree drag and drop background"));
 
 /**
  * Editor background color.

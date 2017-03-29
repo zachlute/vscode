@@ -104,7 +104,7 @@ import 'vs/platform/opener/browser/opener.contribution';
 import { IWorkbenchThemeService } from 'vs/workbench/services/themes/common/workbenchThemeService';
 import { WorkbenchThemeService } from 'vs/workbench/services/themes/electron-browser/workbenchThemeService';
 import { registerThemingParticipant, ITheme, ICssStyleCollector } from 'vs/platform/theme/common/themeService';
-import { foreground, focus } from 'vs/platform/theme/common/colorRegistry';
+import { foreground, focus, listActiveSelectionBackground, listActiveSelectionForeground, listDropBackground, listFocusAndSelectionBackground, listFocusAndSelectionForeground, listFocusBackground, listHoverBackground, listInactiveSelectionBackground } from 'vs/platform/theme/common/colorRegistry';
 
 /**
  * Services that we require for the Shell
@@ -532,6 +532,51 @@ registerThemingParticipant((theme: ITheme, collector: ICssStyleCollector) => {
 			.monaco-shell input[type="checkbox"]:focus {
 				outline-color: ${focusOutline};
 			}
+		`);
+	}
+
+	const listFocusBackgroundColor = theme.getColor(listFocusBackground);
+	const listActiveSelectionBackgroundColor = theme.getColor(listActiveSelectionBackground);
+	const listActiveSelectionForegroundColor = theme.getColor(listActiveSelectionForeground);
+	const listFocusAndSelectionBackgroundColor = theme.getColor(listFocusAndSelectionBackground);
+	const listFocusAndSelectionForegroundColor = theme.getColor(listFocusAndSelectionForeground);
+	const listInactiveSelectionBackgroundColor = theme.getColor(listInactiveSelectionBackground);
+	const listHoverBackgroundColor = theme.getColor(listHoverBackground);
+	const listDropBackgroundColor = theme.getColor(listDropBackground);
+
+	// List/Tree normal theme
+	if (theme.type !== 'hc') {
+		collector.addRule(`
+			.monaco-shell .monaco-tree.focused .monaco-tree-rows > .monaco-tree-row.focused:not(.highlighted)						{ background-color: ${listFocusBackgroundColor}; }
+			.monaco-shell .monaco-tree.focused .monaco-tree-rows > .monaco-tree-row.selected:not(.highlighted) 						{ background-color: ${listActiveSelectionBackgroundColor}; color: ${listActiveSelectionForegroundColor}; }
+			.monaco-shell .monaco-tree.focused .monaco-tree-rows > .monaco-tree-row.focused.selected:not(.highlighted) 				{ background-color: ${listFocusAndSelectionBackgroundColor}; color: ${listFocusAndSelectionForegroundColor}; }
+			.monaco-shell .monaco-tree .monaco-tree-rows > .monaco-tree-row.selected:not(.highlighted)								{ background-color: ${listInactiveSelectionBackgroundColor}; }
+			.monaco-shell .monaco-tree .monaco-tree-rows > .monaco-tree-row:hover:not(.highlighted):not(.selected):not(.focused)	{ background-color: ${listHoverBackgroundColor}; }
+			.monaco-shell .monaco-tree .monaco-tree-wrapper.drop-target,
+			.monaco-shell .monaco-tree .monaco-tree-rows > .monaco-tree-row.drop-target												{ background-color: ${listDropBackgroundColor} !important; }
+
+			.monaco-shell .monaco-list:focus .monaco-list-row.focused { background-color: ${listFocusBackgroundColor}; }
+			.monaco-shell .monaco-list:focus .monaco-list-row.selected { background-color: ${listActiveSelectionBackgroundColor}; color: ${listActiveSelectionForegroundColor}; }
+			.monaco-shell .monaco-list:focus .monaco-list-row.selected.focused { background-color: ${listFocusAndSelectionBackgroundColor}; color: ${listFocusAndSelectionForegroundColor}; }
+			.monaco-shell .monaco-list .monaco-list-row.selected { background-color: ${listInactiveSelectionBackgroundColor}; }
+			.monaco-shell .monaco-list-row:hover { background-color: ${listHoverBackgroundColor}; }
+		`);
+	}
+
+	// List/Tree high contrast theme
+	else if (focusOutline) {
+		collector.addRule(`
+			.monaco-shell .monaco-tree .monaco-tree-rows > .monaco-tree-row 														{ background: none !important; border: 1px solid transparent; }
+			.monaco-shell .monaco-tree.focused .monaco-tree-rows > .monaco-tree-row.focused:not(.highlighted) 						{ border: 1px dotted ${focusOutline}; }
+			.monaco-shell .monaco-tree.focused .monaco-tree-rows > .monaco-tree-row.selected:not(.highlighted) 						{ border: 1px solid ${focusOutline}; }
+			.monaco-shell .monaco-tree .monaco-tree-rows > .monaco-tree-row.selected:not(.highlighted)  							{ border: 1px solid ${focusOutline}; }
+			.monaco-shell .monaco-tree .monaco-tree-rows > .monaco-tree-row:hover:not(.highlighted):not(.selected):not(.focused)  	{ border: 1px dashed ${focusOutline}; }
+			.monaco-shell .monaco-tree .monaco-tree-wrapper.drop-target,
+			.monaco-shell .monaco-tree .monaco-tree-rows > .monaco-tree-row.drop-target												{ background: none !important; border: 1px dashed ${focusOutline}; }
+
+			.monaco-shell .monaco-list .monaco-list-row.selected { outline: 1px dotted ${focusOutline}; color: white; }
+			.monaco-shell .monaco-list:focus .monaco-list-row.focused { outline: 1px solid ${focusOutline}; outline-offset: -1px; background: transparent }
+			.monaco-shell .monaco-list-row:hover { outline: 1px dashed ${focusOutline}; outline-offset: -1px; background: transparent; }
 		`);
 	}
 });
